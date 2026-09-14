@@ -1,44 +1,76 @@
 // Name: Abidemi Awojinrin
-// This program creates and displays two Pet objects.
+// This class is a blueprint for creating Pet objects.
 
 public class Pet {
 
-    // Private data field that stores the pet's name.
+    // Private data fields
+    private String type;
     private String name;
+    private int age;
 
-    // Default constructor that gives the pet a default name.
+    // Default constructor
     public Pet() {
+        setType("Animal");
         setName("Pet Name");
+        setAge(1);
     }
 
-    // Returns the pet's name.
+    // Custom constructor
+    public Pet(String newType, String newName, int newAge) {
+        setType(newType);
+        setName(newName);
+        setAge(newAge);
+    }
+
+    // Returns the pet's type
+    public String getType() {
+        return type;
+    }
+
+    // Changes the pet's type
+    public void setType(String newType) {
+        type = newType;
+    }
+
+    // Returns the pet's name
     public String getName() {
         return name;
     }
 
-    // Changes the pet's name.
+    // Changes the pet's name
     public void setName(String newName) {
         name = newName;
     }
 
-    // Returns the pet's information as a String.
-    public String toString() {
-        return "Pet information:\nName: " + name;
+    // Returns the pet's age
+    public int getAge() {
+        return age;
     }
 
-    public static void main(String[] args) {
+    // Changes the pet's age
+    public void setAge(int newAge) {
+        age = newAge;
+    }
 
-        // Create and display the first Pet using the default constructor.
-        Pet pet1 = new Pet();
-        System.out.println(pet1.toString());
+    // Returns the sound made by the pet
+    public String speak() {
+        if (type.equalsIgnoreCase("dog")) {
+            return "Woof";
+        } else if (type.equalsIgnoreCase("cat")) {
+            return "Meow";
+        } else {
+            return "Yowl";
+        }
+    }
 
-        System.out.println();
+    // Returns the pet's information as a String
+    public String toString() {
+        String petInformation = "Pet information:\n";
+        petInformation += "Type: " + type + "\n";
+        petInformation += "Name: " + name + "\n";
+        petInformation += "Sound: " + speak() + "\n";
+        petInformation += "Age: " + age;
 
-        // Create the second Pet and change its name.
-        Pet pet2 = new Pet();
-        pet2.setName("Buster");
-
-        // Display the second Pet's information.
-        System.out.println(pet2.toString());
+        return petInformation;
     }
 }

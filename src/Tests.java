@@ -1,24 +1,56 @@
 // Name: Abidemi Awojinrin
-// This program calculates and displays the average of three test scores.
+// This class calculates the average of user-entered test scores.
+
+import java.util.Scanner;
 
 public class Tests {
-    public static void main(String[] args) {
+    // Read-only data fields
+    private int numberOfScores;
+    private double average;
 
-        // Declare and initialize the three test scores.
-        double testScore1 = 88.2;
-        double testScore2 = 78.9;
-        double testScore3 = 97.6;
+    // Default constructor
+    public Tests() {
+        numberOfScores = 0;
+        average = 0.0;
+    }
 
+    // Returns the number of scores entered
+    public int getNumberOfScores() {
+        return numberOfScores;
+    }
 
-        // Calculate the average of the three test scores
-        double average = (testScore1 + testScore2 + testScore3) / 3.0;
+    // Returns the calculated test average
+    public double getTestAverage() {
+        return average;
+    }
 
-        // Display each test score.
-        System.out.println("Test score 1:   " + testScore1);
-        System.out.println("Test score 2:  " + testScore2);
-        System.out.println("Test score 3:  " + testScore3);
+    // Collects test scores and calculates the average
+    public void getAverage() {
+        Scanner scnr = new Scanner(System.in);
 
-        //Display the average rounded to two decimal places.
-        System.out.printf("The average of 3 test scores is:  %.2f%n", average);
+        double sum = 0.0;
+        int count = 0;
+
+        System.out.println("Enter a test score (-1 to quit):");
+        double testScore = scnr.nextDouble();
+
+        while (testScore != -1) {
+            sum += testScore;
+            count++;
+
+            System.out.println("Enter a test score (-1 to quit):");
+            testScore = scnr.nextDouble();
+        }
+
+        numberOfScores = count;
+        average = sum / count;
+    }
+
+    // Returns the result with the average formatted to two decimals
+    public String toString() {
+        return String.format(
+                "The average of the %d scores entered is %.2f.",
+                numberOfScores, average
+        );
     }
 }
